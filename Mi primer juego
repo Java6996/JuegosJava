@@ -1,0 +1,270 @@
+import javax.swing.*;
+class Juegos {
+	public static void main(String[] args) {
+		int select, trivia;
+		String res;
+		do {
+		select=Integer.parseInt(JOptionPane.showInputDialog("Bienvenido al selector de juegos, ingresá el numero\ncorrespondiente al juego que deseé jugar.\n1-Pase ingles\n2-Juego de vasos\n3-Trivia"));
+	switch (select) {
+	case 1:
+		paseingles();
+		break;
+	case 2:
+		vasos();
+		break;
+	case 3:
+		trivia=Integer.parseInt(JOptionPane.showInputDialog("Elegí alguna de las dos trivias: \n1-My Little Pony\n2-Grand Theft Auto"));
+		if (trivia==1) {
+			triviamlp();
+		} else if (trivia==2){
+			triviagta();
+		}
+		break;
+	default:
+		JOptionPane.showMessageDialog(null, "Error: juego no encontrado.");
+		break;
+		}
+	res=JOptionPane.showInputDialog("¿Quieres elegir otro juego? \nResonde si o no");
+	}while (res.equalsIgnoreCase("si"));
+		}
+		public static void paseingles() {
+			double a=0, t, f, d;
+			int d1, d2, d3;
+			t=a*3;
+	JOptionPane.showMessageDialog(null, "Craps, o pase ingles, se juega con 3 dados.\nEn la primera tirada, usted puede ganar, perder o continuar,\ngana el triple de su apuesta si la suma de los tres dados es 3 u 18. \nPierde todo su dinero si la suma es 6, 9 o 12. \nCaso contrario, usted tiene derecho a una segunda tirada. \nLa segunda tirada, se generan los valores de los dados,\n si los tres dados son iguales cobra el doble de la apuesta. \n Si alguno de los dados es 1 cobra la apuesta + $10, \n si hay 2 dados iguales no gana ni pierde, \n se le devuelve la apuesta, de lo contrario pierde. \n Usted puede ganar en la primera o en la segunda tirada.", 
+				"Craps", JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/image/craps.jpg")));
+			a=Double.parseDouble(JOptionPane.showInputDialog("Ingrese la apuesta de 1 a 100"));
+			if (a>=1 && a<=100) {
+			d1=(int)(Math.random()*6+1);
+			d2=(int)(Math.random()*6+1);
+			d3=(int)(Math.random()*6+1);
+			JOptionPane.showMessageDialog(null, "PRIMER DADO: " + d1, "Tirada de dados", JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/img/dado" + d1 + ".png")));
+			JOptionPane.showMessageDialog(null, "SEGUNDO DADO: " + d2, "Tirada de dados", JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/img/dado" + d2 + ".png")));
+			JOptionPane.showMessageDialog(null, "TERCER DADO: " + d3, "Tirada de dados", JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/img/dado" + d3 + ".png")));
+			if (((d1+ d2 + d3)==3) || ((d1+ d2 + d3)==18)) {
+				JOptionPane.showMessageDialog(null, "Cobra: " + t, "Finalizando el juego", JOptionPane.DEFAULT_OPTION, 
+						new ImageIcon(Juegos.class.getResource("/image/dadosani.gif")));
+			}else if (((d1+ d2 + d3)==6) || ((d1+ d2 + d3)==9) || ((d1+ d2 + d3)==12)) {
+				JOptionPane.showMessageDialog(null, "Perdio la apuesta");
+			}else {
+				JOptionPane.showMessageDialog(null, "Tiene derecho a una segunda tirada.");
+				d1=(int)(Math.random()*6+1);
+				d2=(int)(Math.random()*6+1);
+				d3=(int)(Math.random()*6+1);
+				d=a*2;
+				f=a+10;
+				JOptionPane.showMessageDialog(null, "PRIMER DADO: " + d1, "Tirada de dados", JOptionPane.DEFAULT_OPTION, 
+						new ImageIcon(Juegos.class.getResource("/img/dado" + d1 + ".png")));
+				JOptionPane.showMessageDialog(null, "SEGUNDO DADO: " + d2, "Tirada de dados", JOptionPane.DEFAULT_OPTION, 
+						new ImageIcon(Juegos.class.getResource("/img/dado" + d2 + ".png")));
+				JOptionPane.showMessageDialog(null, "TERCER DADO: " + d3, "Tirada de dados", JOptionPane.DEFAULT_OPTION, 
+						new ImageIcon(Juegos.class.getResource("/img/dado" + d3 + ".png")));
+				if (d1==d2 && d2==d3) {
+					JOptionPane.showMessageDialog(null, "Cobra: " + d, "Finalizando el juego", JOptionPane.DEFAULT_OPTION, 
+							new ImageIcon(Juegos.class.getResource("/image/dadosani.gif")));
+				}else if (d1==1 || (d2==1) || (d3==1)) {
+					JOptionPane.showMessageDialog(null, "Cobra: " + f, "Finalizando el juego", JOptionPane.DEFAULT_OPTION, 
+							new ImageIcon(Juegos.class.getResource("/image/dadosani.gif")));
+				}else if ((d1==d2) || (d1==d3) || (d2==d3)) {
+					JOptionPane.showMessageDialog(null, "Se le devuelve la apuesta");
+				} else {
+					JOptionPane.showMessageDialog(null, "Perdio la apuesta");
+				}}
+		} else {
+			JOptionPane.showMessageDialog(null, "Error: se debe ingresar una apuesta del 1 a 100");
+		}}
+		public static void vasos() {
+			double a, d=0;
+			int n, cant=0, s, o=0;
+			String v;
+			JOptionPane.showMessageDialog(null, "Encontrar la pelotita debajo de los vasos, son tres vasos con apuesta, \nse tienen 3 tiradas, en cada tirada gana 1 punto, si no 0, \nsi tiene 2 puntos o mas gana el doble de la apuesta, sino pierde.", 
+					"Juego de vasos", JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/vasos/tresvasos.jpg")));
+			a=Double.parseDouble(JOptionPane.showInputDialog("Ingrese la apuesta del 1 a 100"));
+			if (a>=1 && a<=100) {
+				for (int i = 1; i <=3+o; i++) {
+				v=(String)(JOptionPane.showInputDialog(null, "Elegí un vaso, ponga solo el numero del vaso: \n vaso 1 \n vaso 2 \n vaso 3", "Juego de vasos", JOptionPane.DEFAULT_OPTION,
+						new ImageIcon(Juegos.class.getResource("/vasos/tresvasos.jpg")),null, null));
+				s=Integer.parseInt(v);
+				if (s>=1 && s<=3) {
+					n=(int)(Math.random()*3+1);
+					System.out.println("vaso: " + n);
+					if (n==s) {
+						JOptionPane.showMessageDialog(null, "Ganaste 1 punto.", "Juego de vasos", JOptionPane.DEFAULT_OPTION,
+								new ImageIcon (Juegos.class.getResource("/vasos/vaso" + n + ".jpg")));
+						cant++;
+						} else {
+							JOptionPane.showMessageDialog(null, "Fallaste.", "Juego de vasos", JOptionPane.DEFAULT_OPTION,
+									new ImageIcon (Juegos.class.getResource("/vasos/vaso" + n + ".jpg")));
+							}
+				} else {
+					JOptionPane.showMessageDialog(null, "Error, vaso no encontrado.");
+					o=o+1;
+					}}
+				if (cant>=2) {
+					d=a*2;
+					JOptionPane.showMessageDialog(null, "Felicidades, gano: " + d);
+				} else {
+					JOptionPane.showMessageDialog(null, "No gano nada.");
+				}
+			} else {
+				JOptionPane.showMessageDialog(null, "Error: se debe ingresar una apuesta del 1 a 100");
+			}}
+		public static void triviamlp() {
+			String res1, res2, res3;
+			JOptionPane.showMessageDialog(null, "Bienvenido al juego de personajes, elige a alguno de los personajes de My Little Pony\nque estan en pantalla y responda las preguntas", "Lista de personajes", 
+					JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/mlppj.jpg")));
+			res1=JOptionPane.showInputDialog("¿Es mujer?");
+			res2=JOptionPane.showInputDialog("¿Vuela?");
+			res3=JOptionPane.showInputDialog("¿Tiene cuerno?");
+			if (res1.equalsIgnoreCase("si")) {
+				if (res2.equalsIgnoreCase("si")) {
+					if (res3.equalsIgnoreCase("si")) {
+	                JOptionPane.showMessageDialog(null, "Su personaje es Twilight Sparkle", "Lista de personajes", 
+								JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/tw.jpg")));
+					}else if (res3.equalsIgnoreCase("no")) {
+						JOptionPane.showMessageDialog(null, "Su personaje es Rainbow Dash", "Lista de personajes", 
+								JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/rd.jpg")));
+					}}
+			if (res1.equalsIgnoreCase("si")) {
+				if (res2.equalsIgnoreCase("no")) {
+					if (res3.equalsIgnoreCase("si")) {
+						JOptionPane.showMessageDialog(null, "Su personaje es Rarity", "Lista de personajes", 
+								JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/rarity.jpg")));
+					} else if (res3.equalsIgnoreCase("no")) {
+						JOptionPane.showMessageDialog(null, "Su personaje es Applejack", "Lista de personajes", 
+								JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/aj.jpg")));
+						}}}}
+			if (res1.equalsIgnoreCase("no")) {
+			 if (res2.equalsIgnoreCase("no")) {
+				 if (res3.equalsIgnoreCase("no")) {
+			         JOptionPane.showMessageDialog(null, "Su personaje es Big Macintosh", "Lista de personajes", 
+						JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/bigmac.jpg")));
+	                   }}}
+				if (res1.equalsIgnoreCase("no")) {
+				if (res2.equalsIgnoreCase("si")) {
+					if (res3.equalsIgnoreCase("no")){
+	          	   JOptionPane.showMessageDialog(null, "Su personaje es Spike", "Lista de personajes", 
+	     					JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/spike.jpg")));
+					}}}
+				if (res1.equalsIgnoreCase("no")) {
+					if (res2.equalsIgnoreCase("no")) {
+						if (res3.equalsIgnoreCase("si")) {
+							JOptionPane.showMessageDialog(null, "Su personaje es Shining Armor", "Lista de personajes", 
+			     					JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/sa.jpg")));
+							}}}
+				if (res1.equalsIgnoreCase("no")) {
+					if (res2.equalsIgnoreCase("si")) {
+						if (res3.equalsIgnoreCase("si")) {
+							JOptionPane.showMessageDialog(null, "Su personaje es Star Swirl El Barbardo", "Lista de personajes", 
+			     					JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/trivia/sstb.jpg")));
+							}}}}
+	public static void triviagta() {
+		String vj;
+		int cant;
+		cant=0;
+		final String c="Respuesta correcta", inc="Respuesta incorrecta";
+		vj= (String)JOptionPane.showInputDialog(null, "¿En que ciudad de la vida real se basa?", "Ciudad", JOptionPane.DEFAULT_OPTION, 
+				new ImageIcon(Juegos.class.getResource("/gta/ciudad.png")), null, null);
+		if (vj.equalsIgnoreCase("Miami")) {
+	        JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+	        		new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+	          cant=cant+1;
+		}else {
+			JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+			}
+			vj= (String)JOptionPane.showInputDialog(null, "¿En que ciudad de la vida real se basa?", "Ciudad", JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/gta/lc.jpg")), null, null);
+			if (vj.equalsIgnoreCase("Nueva York")) {
+		        JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+		        		new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+		          cant=cant+1;
+			}else {
+				JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+						new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+				}
+		vj= (String)JOptionPane.showInputDialog(null, "¿Cual es el nombre y apellido del protagonista?", "Protagonistas", JOptionPane.DEFAULT_OPTION,
+					new ImageIcon(Juegos.class.getResource("/gta/gtasa.jpg")), null, null);
+		if (vj.equalsIgnoreCase("Carl Johnson")) {
+			JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+			cant=cant+1;
+		}else {
+			JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+		}
+		vj= (String)JOptionPane.showInputDialog(null, "¿Cual es el nombre y apellido del protagonista?", "Protagonistas", JOptionPane.DEFAULT_OPTION,
+				new ImageIcon(Juegos.class.getResource("/gta/gta3.png")), null, null);
+	        if (vj.equalsIgnoreCase("Claude Speed")) {
+		      JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+		    		  new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+		        cant=cant+1;
+	             }else {
+		         JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+		        		 new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+		         }
+		         vj= (String)JOptionPane.showInputDialog(null, "¿Cual es el nombre y apellido del protagonista?", "Protagonistas", JOptionPane.DEFAULT_OPTION,
+							new ImageIcon(Juegos.class.getResource("/gta/bully.jpg")), null, null);
+				        if (vj.equalsIgnoreCase("Jimmy Hopkins")) {
+					      JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+					    		  new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+					        cant=cant+1;
+				             }else {
+					         JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+					        		 new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+					         }
+				vj= (String)JOptionPane.showInputDialog(null, "¿Cual es el nombre y apellido del protagonista?", "Protagonistas", JOptionPane.DEFAULT_OPTION,
+					new ImageIcon(Juegos.class.getResource("/gta/gtavcs.png")), null, null);
+		        if (vj.equalsIgnoreCase("Victor Vance")) {
+			      JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+			        cant=cant+1;
+		             }else {
+			         JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+			        		 new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+	             }	
+		vj= (String)JOptionPane.showInputDialog(null, "¿Cual es el nombre y apellido del hermano del protagonista?", "Protagonistas", JOptionPane.DEFAULT_OPTION,
+				new ImageIcon(Juegos.class.getResource("/gta/gtavcs.png")), null, null);
+	        if (vj.equalsIgnoreCase("Lance Vance")) {
+		      JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+		    		  new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+		        cant=cant+1;
+	             }else {
+		         JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+		        		 new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));		   
+		         }     
+	      vj= (String)JOptionPane.showInputDialog(null, "¿Cual de los tres fue el primero en 3d?", "¿Cual fue?", JOptionPane.DEFAULT_OPTION,
+				new ImageIcon(Juegos.class.getResource("/gta/gta.jpg")), null, null);
+		if (vj.equalsIgnoreCase("Gta 3") || vj.equalsIgnoreCase("Gta lll") || vj.equalsIgnoreCase("Gtalll")) {
+			JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+			cant=cant+1;
+		}else {
+			JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+		}	
+		vj= (String)JOptionPane.showInputDialog(null, "¿Cual de los tres fue el primero en lanzarse?", "¿Cual fue?", JOptionPane.DEFAULT_OPTION, 
+					new ImageIcon(Juegos.class.getResource("/gta/reddead.jpg")), null, null);
+			if (vj.equalsIgnoreCase("Red Dead Revolver") || vj.equalsIgnoreCase("RDR")) {
+				JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+						new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+				cant=cant+1;
+			}else {
+				JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+						new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+			}
+            vj= (String)JOptionPane.showInputDialog(null, "¿Cual fue el primer Grand Theft Auto?", "¿Cual fue?", JOptionPane.DEFAULT_OPTION,
+						new ImageIcon(Juegos.class.getResource("/gta/gta2d.jpg")), null, null);
+				
+				if (vj.equalsIgnoreCase("Gta 1") || vj.equalsIgnoreCase("Gta")) {
+					JOptionPane.showMessageDialog(null, c, c, JOptionPane.DEFAULT_OPTION, 
+							new ImageIcon(Juegos.class.getResource("/gta/corre.jpg")));
+				}else {
+					JOptionPane.showMessageDialog(null, inc, inc, JOptionPane.DEFAULT_OPTION, 
+							new ImageIcon(Juegos.class.getResource("/gta/incorre.jpg")));
+				}
+		JOptionPane.showMessageDialog(null, "Cantidad de respuestas correctas: " + cant, c, JOptionPane.DEFAULT_OPTION,
+					 new ImageIcon(Juegos.class.getResource("/gta/felic.gif"))); 
+		}}
